@@ -18,3 +18,7 @@
    * add new Recipie
    * Home page / sign-in or view recipies has a picture or two, just a page to look nice
    * User page, the page to have you navagate to choose food you want and redirect you to your ingrediant list.
+* new things I know I need to learn
+  * API With Authentication in react
+  * A bunch more styling to make it actualy look good.
+  * 
