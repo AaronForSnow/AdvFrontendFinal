@@ -27,3 +27,9 @@
 
 Notes from in-class:
 * Start with Ingrediants, this is the one others depend on. (make it fully, before you move on)
+* Testing fraimworks
+   * vitest (https://vitest.dev/guide
+   * npm install -D vitest
+   * npm run test
+      * define test in package.json
+      * 
