@@ -4,7 +4,7 @@
    * Has a recipies list
      * Ingrediants and amounts
      * has waring when ingreadiant are about to run out.
-     * has suggested shopping list, based on the needs from the ingrediants
+     * has suggested shopping list, based on the needs from the ingrediants ## not planned to have more than a simple need these for your recipies
    * has users, different inventories are avalible for the user... (maybe, resipies are public?)
  * Vite sight calling a C# API that has the data/database
  * Posible page list:
