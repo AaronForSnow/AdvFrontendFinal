@@ -20,8 +20,4 @@ public class IngredientController : Controller
         return await _service.GetIngredientsAsync();
         //return new();
     }
-    //public IActionResult Index()
-    //{
-    //    return View();
-    //}
 }
