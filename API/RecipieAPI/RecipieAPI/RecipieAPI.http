@@ -4,3 +4,5 @@ GET {{RecipieAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+GET {{RecipieAPI_HostAddress}}/Ingredient/getall
+Accept: application/json
