@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using RecipieAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors();
 
 // Add services to the container.
 builder.Services.AddScoped<Ingredients>();
@@ -22,6 +23,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(
+    p => p
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowAnyOrigin()
+);
 
 app.UseHttpsRedirection();
 //app.UseRouting();
