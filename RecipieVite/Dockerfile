@@ -13,7 +13,7 @@ RUN npm run build
 FROM nginx 
 
 COPY default.conf /etc/nginx/conf.d/default.conf
-COPY --from=development /recipie-vite/dist /usr/share/nginx/html
+COPY --from=development /aaron-final/dist /usr/share/nginx/html
 
 EXPOSE 80
 
