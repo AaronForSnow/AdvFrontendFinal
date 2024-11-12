@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: recipie-api
-        image: ${DOCKER_USER}/aaron-final:${IMAGE_TAG}
+        image: ${DOCKER_USER}/aaron-final-api:${IMAGE_TAG}
         ports:
         - containerPort: 8080
         readinessProbe:

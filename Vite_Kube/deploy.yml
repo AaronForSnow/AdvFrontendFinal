@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: recipie-vite
-        image: ${DOCKER_USER}/aaron-react:${IMAGE_TAG}
+        image: ${DOCKER_USER}/aaron-final:${IMAGE_TAG}
         ports:
         - containerPort: 80
         readinessProbe:

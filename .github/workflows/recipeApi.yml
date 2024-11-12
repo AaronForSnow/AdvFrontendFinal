@@ -17,14 +17,14 @@ jobs:
           - name: Build image
             run: |
               docker build \
-              -t ${{secrets.DOCKER_USERNAME}}/aaron-final:${{github.run_number}} \
-              -t ${{secrets.DOCKER_USERNAME}}/aaron-final:latest \
+              -t ${{secrets.DOCKER_USERNAME}}/aaron-final-api:${{github.run_number}} \
+              -t ${{secrets.DOCKER_USERNAME}}/aaron-final-api:latest \
                 ./API/RecipieAPI/RecipieAPI/
 
           # ./API/RecipieAPI --configuration Release
           - name: Push image
             run: |
-              docker push ${{secrets.DOCKER_USERNAME}}/aaron-final --all-tags
+              docker push ${{secrets.DOCKER_USERNAME}}/aaron-final-api --all-tags
           - name: Deploy on Kube
             run: |
               export PATH=$PATH:~/.nix-profile/bin:/nix/profiles/default/bin
