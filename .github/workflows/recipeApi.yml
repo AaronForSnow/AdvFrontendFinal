@@ -30,7 +30,7 @@ jobs:
               export PATH=$PATH:~/.nix-profile/bin:/nix/profiles/default/bin
               export IMAGE_TAG=${{github.run_number}}
               export DOCKER_USER=${{secrets.DOCKER_USERNAME}}
-              for file in APIKube/*; do
+              for file in API_Kube/*; do
                 cat "$file" | envsubst | kubectl apply -f -;
               done
 
