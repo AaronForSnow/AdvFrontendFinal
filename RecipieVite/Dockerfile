@@ -1,8 +1,8 @@
 FROM node:alpine AS development
 #FROM node:20-alpine AS development # would be better
-WORKDIR /react-app
+WORKDIR /aaron-final
 # Installing dependencies
-COPY ./package*.json /react-app
+COPY ./package*.json /aaron-final/
 
 RUN npm install
 # Copying all the files in our project
