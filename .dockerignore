@@ -1,0 +1,11 @@
+build/
+dist/
+node_modules/
+README.md 
+.gitignore
+Dockerfile
+docker-compose.yml
+kube/
+.git
+npm-debug.log
+.env

@@ -1,0 +1,17 @@
+apiVersion: networking.k9s.io/v1
+kind: Ingress
+metadata:
+  name: recipie-api-ingress
+  namespace: aaron-final
+spec:
+  rules:
+  - host: aaron-recipie-api.duckdns.org
+    http: 
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: recipie-api-service
+              port:
+                number: 8080

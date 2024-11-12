@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: recipie-vite-service
+  namespace: aaron-final
+spec:
+  selector:
+    app: recipie-vite
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP

@@ -1,0 +1,17 @@
+apiVersion: networking.k9s.io/v1
+kind: Ingress
+metadata:
+  name: recipie-vite-ingress
+  namespace: aaron-final
+spec:
+  rules:
+  - host: aaron-recipie-vite.duckdns.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: recipie-vite-service
+            port:
+              number: 80
