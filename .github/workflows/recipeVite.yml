@@ -1,4 +1,4 @@
-name: Build_and_deploy_API
+name: Build_and_deploy_Vite
 on:
   push:
     branches: [main]
