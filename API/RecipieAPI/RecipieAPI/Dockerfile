@@ -1,20 +1,19 @@
-FROM node:alpine AS development
-#FROM node:20-alpine AS development # would be better
-WORKDIR /react-app
-# Installing dependencies
-COPY ./package*.json /react-app
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
-RUN npm install
-# Copying all the files in our project
-COPY . .
-ENV VITE_API_URL http://aaron-recipie-api.duckdns.org/Ingredient/getall
-RUN npm run build
+WORKDIR /app
 
-FROM nginx 
+COPY *.csproj ./
+RUN dotnet restore
 
-COPY default.conf /etc/nginx/conf.d/default.conf
-COPY --from=development /react-app/dist /usr/share/nginx/html
+COPY . ./
 
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+
+WORKDIR /app
+
+COPY --from=build /app/out .
 EXPOSE 80
+ENTRYPOINT ["dotnet", "RecipieAPI.dll"]
 
-CMD [ "nginx", "-g", "daemon off;" ]
