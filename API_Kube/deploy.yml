@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: recipie-api
+  name: aaron-final-api
   namespace: aaron-final
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: recipie-api
+      app: aaron-final-api
   strategy:
    type: RollingUpdate
    rollingUpdate:
@@ -16,23 +16,23 @@ spec:
   template:
     metadata:
       labels:
-        app: recipie-api
+        app: aaron-final-api
     spec:
       containers:
-      - name: recipie-api
+      - name: aaron-final-api
         image: ${DOCKER_USER}/aaron-final-api:${IMAGE_TAG}
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         readinessProbe:
           httpGet:
             path: /
-            port: 80
+            port: 8080
           initialDelaySeconds: 5
           periodSeconds: 10
           timeoutSeconds: 3
         livenessProbe:
           httpGet:
             path: /
-            port: 80
+            port: 8080
           initialDelaySeconds: 15
           periodSeconds: 20

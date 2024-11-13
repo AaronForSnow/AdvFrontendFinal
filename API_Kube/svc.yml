@@ -5,9 +5,9 @@ metadata:
   namespace: aaron-final
 spec:
   selector:
-    app: recipie-api
+    app: aaron-final-api
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 80
+    port: 8080
+    targetPort: 8080
   type: ClusterIP

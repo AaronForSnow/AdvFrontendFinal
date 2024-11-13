@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: recipie-api-ingress
+  name: aaron-final-api
   namespace: aaron-final
 spec:
   rules:
@@ -14,4 +14,4 @@ spec:
             service:
               name: recipie-api-service
               port:
-                number: 80
+                number: 8080
