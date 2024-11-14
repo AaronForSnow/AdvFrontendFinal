@@ -13,9 +13,9 @@ public class Customer_IngredientController : Controller
         _service = service;
     }
 
-    [HttpGet("getall/{eamil}")]
-    public async Task<List<CustomerIngredient>> GetCustomerIngredientsAsync(string userEmail)
+    [HttpGet("getall/{userEmail}")]
+    public List<CustomerIngredientDetails> GetCustomerIngredientsAsync(string userEmail)
     {
-        return await _service.getallAsync(userEmail);
+        return _service.getall(userEmail);
     }
 }

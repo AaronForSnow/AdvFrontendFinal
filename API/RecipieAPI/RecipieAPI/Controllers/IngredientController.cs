@@ -30,4 +30,5 @@ public class IngredientController : Controller
     public async Task<List<Ingredient>> DeleteIngredientAsync(int id){
         return await _service.DeleteIngredientAsync(id);
     }
+
 }

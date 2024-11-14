@@ -3,6 +3,7 @@ using RecipieAPI.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using RecipieAPI.Services;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
@@ -11,7 +12,7 @@ builder.Services.AddCors();
 builder.Services.AddScoped<IngredientService>();
 builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<Customer_IngredientService>();
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles); // Prevent circular dependencies
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
