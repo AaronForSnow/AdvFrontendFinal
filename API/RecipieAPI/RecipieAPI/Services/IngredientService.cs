@@ -4,11 +4,11 @@ using RecipieAPI.Models;
 
 namespace RecipieAPI.Services;
 
-public class Ingredients
+public class IngredientService
 {
     private readonly AppDbContext _context;
 
-    public Ingredients(AppDbContext db)
+    public IngredientService(AppDbContext db)
     {
         _context = db;
     }

@@ -8,8 +8,8 @@ namespace RecipieAPI.Controllers;
 [Route("[controller]")]
 public class IngredientController : Controller
 {
-    private readonly Ingredients _service;
-    public IngredientController(Ingredients service)
+    private readonly IngredientService _service;
+    public IngredientController(IngredientService service)
     {
         _service = service;
     }

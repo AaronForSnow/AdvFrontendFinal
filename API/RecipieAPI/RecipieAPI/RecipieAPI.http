@@ -45,7 +45,6 @@ Accept: application/json
   "username": "Harry Hardwalk",
   "email": "sob_story@example.com"
 }
-
 ### Needs to include units and ingredients
 GET {{RecipieAPI_HostAddress}}/Customer_Ingredient/getall/john_doe@example.com
 Accept: application/json
