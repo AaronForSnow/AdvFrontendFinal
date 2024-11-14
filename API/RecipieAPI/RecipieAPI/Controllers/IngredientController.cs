@@ -20,4 +20,14 @@ public class IngredientController : Controller
         return await _service.GetIngredientsAsync();
         //return new();
     }
+
+    [HttpPost("add")]
+    public async Task<List<Ingredient>> AddIngredientAsync(Ingredient i){
+        return await _service.AddIngredientAsync(i);
+    }
+
+    [HttpDelete("delete/{id}")]
+    public async Task<List<Ingredient>> DeleteIngredientAsync(int id){
+        return await _service.DeleteIngredientAsync(id);
+    }
 }

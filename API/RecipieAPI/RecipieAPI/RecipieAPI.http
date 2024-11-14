@@ -6,3 +6,83 @@ Accept: application/json
 ###
 GET {{RecipieAPI_HostAddress}}/Ingredient/getall
 Accept: application/json
+
+###
+POST {{RecipieAPI_HostAddress}}/Ingredient/add
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Water",
+  "description": "Tap water"
+}
+
+###
+POST {{RecipieAPI_HostAddress}}/Ingredient/add
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 6,
+  "name": "Cinnamon",
+  "description": "Powdery Spice"
+}
+
+###
+DELETE {{RecipieAPI_HostAddress}}/Ingredient/delete/6
+Accept: application/json
+
+###
+GET {{RecipieAPI_HostAddress}}/Customer/get/john_doe@example.com
+Accept: application/json
+
+###
+POST {{RecipieAPI_HostAddress}}/Customer/add
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "Harry Hardwalk",
+  "email": "sob_story@example.com"
+}
+
+### Needs to include units and ingredients
+GET {{RecipieAPI_HostAddress}}/Customer_Ingredient/getall/john_doe@example.com
+Accept: application/json
+
+### Needs Data Transfer object
+POST {{RecipieAPI_HostAddress}}/Customer_Ingredient/add/
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email" : "john_doe@example.com",
+    "ingredient_id" : 2,
+    "unit_id" : 2,
+    "quantity" : 4,
+}
+
+### Needs to include: Recipie_ingredient, unit, ingredients
+GET {{RecipieAPI_HostAddress}}/Recipie/GetAll
+Accept: application/application/json
+
+### Needs Data Transfer Object
+POST {{RecipieAPI_HostAddress}}/Recipie/Add
+Content-Type: application/json
+Accept: application/json
+
+{
+    "recipie" : {
+        "name" : "oatmeal",
+        "description" : "breakfast cereal",
+        "instructions" : "combine water and oats. \nHeat until done \nadd brown sugar to tase",
+    },
+    "ingredient_ids" : [9,10,11],
+    "unit_ids" : [3,2,2],
+    "quantities" : [2,1,2],
+}
+### Option: allow delete of Recipie, might not do... but would go here
+### Should only need for make recipie/add ingredients page
+GET {{RecipieAPI_HostAddress}}/Unit/getall
+Accept: application/json
+

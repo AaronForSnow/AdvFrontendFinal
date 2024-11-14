@@ -33,3 +33,6 @@ Notes from in-class:
    * npm run test
       * define test in package.json
       * 
+
+
+Local Storage note: an idea is to keep the name/path of the page of the sight the use was on last. Then you can open up to the same page that they were on when they were here last automaticly as a redirect from the home page.

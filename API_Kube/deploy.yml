@@ -23,6 +23,9 @@ spec:
         image: ${DOCKER_USER}/aaron-final-api:${IMAGE_TAG}
         ports:
         - containerPort: 8080
+        env:
+        - name: db
+          value: ${DATABASE}
         readinessProbe:
           httpGet:
             path: /
