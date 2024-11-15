@@ -25,7 +25,7 @@ spec:
         - containerPort: 8080
         env:
         - name: db
-          value: ${DATABASE}
+          value: "${DATABASE}"
         readinessProbe:
           httpGet:
             path: /
