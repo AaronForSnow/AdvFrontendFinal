@@ -34,7 +34,7 @@ app.UseCors(
     .AllowAnyMethod()
     .AllowAnyOrigin()
 );
-
+app.MapGet("/", () => "healthy");
 app.UseHttpsRedirection();
 //app.UseRouting();
 app.UseAuthorization();
