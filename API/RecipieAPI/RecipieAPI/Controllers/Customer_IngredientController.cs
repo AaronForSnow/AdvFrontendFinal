@@ -18,4 +18,10 @@ public class Customer_IngredientController : Controller
     {
         return _service.getall(userEmail);
     }
+
+    [HttpPost("addto")]
+    public async Task<List<CustomerIngredientDetails>> AddToCustomerIngredientsAsync(CustomerIngredientAddDTO dto)
+    {
+        return await _service.addCustomerIngredientAsync(dto);
+    }
 }

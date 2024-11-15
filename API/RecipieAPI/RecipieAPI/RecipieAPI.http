@@ -50,7 +50,7 @@ GET {{RecipieAPI_HostAddress}}/Customer_Ingredient/getall/john_doe@example.com
 Accept: application/json
 
 ### Needs Data Transfer object
-POST {{RecipieAPI_HostAddress}}/Customer_Ingredient/add/
+POST {{RecipieAPI_HostAddress}}/Customer_Ingredient/addto
 Content-Type: application/json
 Accept: application/json
 
@@ -58,11 +58,23 @@ Accept: application/json
     "email" : "john_doe@example.com",
     "ingredient_id" : 2,
     "unit_id" : 2,
-    "quantity" : 4,
+    "quantity" : 4
+}
+
+###
+POST {{RecipieAPI_HostAddress}}/Customer_Ingredient/addto
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email" : "john_doe@example.com",
+    "ingredient_id" : 2,
+    "unit_id" : 2,
+    "quantity" : -8
 }
 
 ### Needs to include: Recipie_ingredient, unit, ingredients
-GET {{RecipieAPI_HostAddress}}/Recipie/GetAll
+GET {{RecipieAPI_HostAddress}}/Recipie/getall
 Accept: application/application/json
 
 ### Needs Data Transfer Object
@@ -71,11 +83,9 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "recipie" : {
-        "name" : "oatmeal",
-        "description" : "breakfast cereal",
-        "instructions" : "combine water and oats. \nHeat until done \nadd brown sugar to tase",
-    },
+    "recipie_name" : "oatmeal",
+    "description" : "breakfast cereal",
+    "instructions" : "combine water and oats. \nHeat until done \nadd brown sugar to tase",
     "ingredient_ids" : [9,10,11],
     "unit_ids" : [3,2,2],
     "quantities" : [2,1,2],
