@@ -7,7 +7,7 @@ namespace RecipieAPI.Services;
 public class RecipieMakerDTO
 {
     public string recipie_name { get; set; } = "";
-    public string discription { get; set; } = "";
+    public string description { get; set; } = "";
     public string instructions { get; set; } = "";
     public List<int> ingredient_ids { get; set; } = new List<int>();
     public List<int> unit_ids { get; set; } = new List<int>();
@@ -17,7 +17,7 @@ public class RecipieGiverDTO
 {
     public int id { get; set; }
     public string recipie_name { get; set; } = "";
-    public string discription { get; set; } = "";
+    public string description { get; set; } = "";
     public string instructions { get; set; } = "";
     public List<Ingredient_Amount> ingredients { get; set; } = new ();
 }
@@ -43,7 +43,7 @@ public class RecipieService
             RecipieGiverDTO rec = new RecipieGiverDTO();
             rec.id = recipe.Id;
             rec.recipie_name = recipe.Name;
-            rec.discription = recipe.Description ?? "no descrption given";
+            rec.description = recipe.Description ?? "no descrption given";
             rec.instructions = recipe.Instructions ?? "no instructions given";
             foreach (RecipeIngredient recipieingredient in _context.RecipeIngredients.Where(ri => ri.RecipeId == recipe.Id).ToList())
             {
