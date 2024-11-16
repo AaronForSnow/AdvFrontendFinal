@@ -1,0 +1,25 @@
+$primary: #6fdb78;
+$secondary: #cab6cf;
+$success: #30ce3d;
+
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/variables-dark";
+
+
+$custom-colors: (
+  "bright_accent": hsl(288, 80%, 44%), //This is a place holder. It is posible to make custom variables!
+  "aaron-background": rgb(213, 253, 213) 
+  );
+
+  .MyLink {
+    transition: transform 0.3s ease, color 0.3s ease;
+    &:hover {
+      transform: scale(1.2); 
+    }
+  }
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

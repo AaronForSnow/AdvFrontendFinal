@@ -11,7 +11,7 @@ export const IngredientContextProvider: FC<{ children: ReactNode }> =({
 
     useEffect(() => {
         setIsLoading(true)
-        APIService.getAll().then((tempIngredients) => {
+        APIService.getAllIngredients().then((tempIngredients) => {
             if (tempIngredients) {
                 setIngredients(tempIngredients);
             }
