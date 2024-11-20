@@ -1,45 +1,30 @@
-import { useState } from 'react'
-import './App.css'
-import { Ingredients } from './components/Ingredients'
+import { useState } from "react";
+import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { PlainSpinner } from './components/PlainSpinner';
-import { useIngredientContext } from './context/useIngredientContextProvider';
-
+import { IngredientPage } from "./Pages/IngredientPage";
+import { NavBar } from "./components/NavBar";
+import { HomePage } from "./Pages/HomePage";
+import { NoPage } from "./Pages/NoPagePage";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const { isLoading } = useIngredientContext();
+  const [count, setCount] = useState(0);
   return (
     <>
-    <Router>
-      <Routes>
-        <Route
-          path="/ingredients"
-          element={
-            <Ingredients/>
-          }>
-
-        </Route>
-        <Route
-          path="*"
-          element={
-            <div className="d-flex justify-content-center">
-              {isLoading && <PlainSpinner />}
-              {!isLoading && (
-                <h2>Opps, There doesn't seem to be anything at this page</h2>
-              )}
-            </div>
-          }
-        ></Route>
-      </Routes>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </Router>
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/ingredients" element={<IngredientPage />}/>
+          <Route path="*" element={ <NoPage/> }/>
+          <Route path="/" element={ <HomePage/> } />
+        </Routes>
+        <div className="card">
+          <button onClick={() => setCount((count) => count + 1)}>
+            count is {count}
+          </button>
+        </div>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

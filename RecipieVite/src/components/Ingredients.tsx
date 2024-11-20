@@ -1,11 +1,14 @@
 import { useIngredientContext } from "../context/useIngredientContextProvider"
 import { Ingredient } from "../Data/Ingredient";
+import { PlainSpinner } from "./PlainSpinner";
 
 
 export function Ingredients () {
     const { ingredients,isLoading } = useIngredientContext();
     return (
         <>
+        <PlainSpinner />
+            {isLoading && <PlainSpinner />}
             {!isLoading && 
         <div>
             {ingredients.map((i: Ingredient) => (
