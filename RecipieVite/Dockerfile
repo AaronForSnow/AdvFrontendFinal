@@ -7,7 +7,7 @@ COPY ./package*.json /aaron-final/
 RUN npm install
 # Copying all the files in our project
 COPY . .
-ENV VITE_API_URL=http://aaron-recipie-api.duckdns.org/Ingredient/getall
+ENV VITE_API_URL=http://aaron-recipie-api.duckdns.org/
 RUN npm run build
 
 FROM nginx 
