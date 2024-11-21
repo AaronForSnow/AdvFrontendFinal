@@ -1,27 +1,56 @@
 import { useNavigate } from "react-router-dom";
- 
+import menuIcon from "../../public/menu_burger.svg"
 
- export function NavBar () {
-    return (
-        <>
-           <GoTo locString="Ingredients"/>
-           <GoTo locString=""/>
-        </>
-    )
+export function NavBar() {
+  const navigate = useNavigate();
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div className="container-fluid">
+          {/* Brand logo or name */}
+          <a className="navbar-brand text-primarylight" onClick={() => navigate("/")}>
+            Aaron's Recipies
+          </a>
+
+          <button
+            className="navbar-toggler bg-secondary hamburger"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <img src={menuIcon}/>
+          </button>
+
+          {/* Navbar links */}
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <GoTo locString="" />
+              </li>
+              <li className="nav-item">
+                <GoTo locString="Ingredients" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div className="pt-3"></div>
+      {/* padding to prevent hiding content of pages*/}
+    </>
+  );
 }
 
-export const GoTo = ({
-    locString
-  }: {
-    locString: string;
-  }) => {
-    const navigate = useNavigate();
-    const handleRedirect = () => {
-      navigate("/" + locString.replace(/ /g, ""));
-    };
-    return (
-      <button className="btn btn-primary" onClick={() => handleRedirect()}>
-        {locString ? locString : "Home page"}
-      </button>
-    );
+export const GoTo = ({ locString }: { locString: string }) => {
+  const navigate = useNavigate();
+  const handleRedirect = () => {
+    navigate("/" + locString.replace(/ /g, ""));
   };
+  return (
+    <button className="btn btn-secondary text-primarylight MyLink" onClick={() => handleRedirect()}>
+      {locString ? locString : "Home page"}
+    </button>
+  );
+};

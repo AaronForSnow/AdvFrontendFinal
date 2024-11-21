@@ -2,12 +2,14 @@ import { FC, ReactNode, useEffect, useState } from "react";
 import { ingredientContext } from "./useIngredientContextProvider";
 import { Ingredient } from "../Data/Ingredient";
 import { APIService } from "../Services/APIService";
+import { Customer } from "../Data/Customer";
 
 export const IngredientContextProvider: FC<{ children: ReactNode }> =({
     children,
 }) => {
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [customer, setCustomer] = useState<Customer | undefined>(undefined);
 
     useEffect(() => {
         setIsLoading(true)
@@ -15,24 +17,27 @@ export const IngredientContextProvider: FC<{ children: ReactNode }> =({
             if (tempIngredients) {
                 setIngredients(tempIngredients);
             }
-            else {
-                setIngredients([
-                    {
-                        id: 1,
-                        name: "not an ingredient",
-                        description: "not a description",
-                    },
-                ]);
-            }
         })
         setIsLoading(false)
     },[])
+
+    const getOrMakeCustomer = async (email: string) => {
+        const c = await APIService.getCustomer(email);
+        if (c.email){
+            setCustomer(c)
+        }
+        else {
+            //set customer to api
+        }
+    }
 
     return (
         <ingredientContext.Provider
         value={{
             ingredients: ingredients,
             isLoading: isLoading,
+            customer: customer,
+            getCustomer: getOrMakeCustomer,
         }}>
             {children}
         </ingredientContext.Provider>

@@ -7,7 +7,6 @@ export function Ingredients () {
     const { ingredients,isLoading } = useIngredientContext();
     return (
         <>
-        <PlainSpinner />
             {isLoading && <PlainSpinner />}
             {!isLoading && 
         <div>

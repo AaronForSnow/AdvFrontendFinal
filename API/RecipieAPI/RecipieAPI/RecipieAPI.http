@@ -1,4 +1,5 @@
-@RecipieAPI_HostAddress = http://localhost:5112
+# @RecipieAPI_HostAddress = http://localhost:5112
+@RecipieAPI_HostAddress = http://aaron-recipie-api.duckdns.org
 
 GET {{RecipieAPI_HostAddress}}/weatherforecast/
 Accept: application/json
@@ -33,7 +34,7 @@ DELETE {{RecipieAPI_HostAddress}}/Ingredient/delete/6
 Accept: application/json
 
 ###
-GET {{RecipieAPI_HostAddress}}/Customer/get/john_doe@example.com
+GET {{RecipieAPI_HostAddress}}/Customer/get/john_doe@example.co
 Accept: application/json
 
 ###

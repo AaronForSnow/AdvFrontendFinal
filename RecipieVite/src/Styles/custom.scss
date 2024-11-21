@@ -1,6 +1,8 @@
 $primary: #6fdb78;
-$secondary: #cab6cf;
+$primarylight: #c3ecc6;
 $success: #30ce3d;
+$dark: #103113;
+$secondary: #1d5724;
 
 
 @import "../../node_modules/bootstrap/scss/functions";
@@ -14,11 +16,21 @@ $custom-colors: (
   );
 
   .MyLink {
-    transition: transform 0.3s ease, color 0.3s ease;
     &:hover {
-      transform: scale(1.2); 
+      transform: scale(1.1); 
+      transition: transform 0.3s ease, color 0.3s ease;
     }
   }
+
+  .hamburger {
+    border-color: rgb(0, 191, 255);
+  }
+  
+  .navbar-toggler:active {
+    border-color: #c3ecc6;
+    outline-color: #c3ecc6;
+  }
+
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
