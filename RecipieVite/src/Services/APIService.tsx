@@ -17,6 +17,11 @@ export const APIService = {
         const responseIngredients: Ingredient[] = response.data;
         return responseIngredients;
     },
+    addIngredient: async (i: Ingredient) => {
+        const response = await axios.post(apiUrl + "Ingredient/add", i);
+        const responseIngredients: Ingredient[] = response.data;
+        return responseIngredients;
+    },
     getCustomer: async (email: string) => {
         const response = await axios.get(apiUrl + "Customer/get/" + email || "john_doe@example.com");
         const customer: Customer = response.data;

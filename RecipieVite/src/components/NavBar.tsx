@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import menuIcon from "../../public/menu_burger.svg"
+import menuIcon from "/menu_burger.svg"
 
 export function NavBar() {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ export function NavBar() {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container-fluid">
           {/* Brand logo or name */}
-          <a className="navbar-brand text-primarylight" onClick={() => navigate("/")}>
+          <a className="navbar-brand text-light" onClick={() => navigate("/")}>
             Aaron's Recipies
           </a>
 
@@ -26,7 +26,7 @@ export function NavBar() {
 
           {/* Navbar links */}
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav " >
               <li className="nav-item">
                 <GoTo locString="" />
               </li>
@@ -49,7 +49,7 @@ export const GoTo = ({ locString }: { locString: string }) => {
     navigate("/" + locString.replace(/ /g, ""));
   };
   return (
-    <button className="btn btn-secondary text-primarylight MyLink" onClick={() => handleRedirect()}>
+    <button className="btn btn-secondary text-light MyLink" onClick={() => handleRedirect()} style={{minWidth: '100%'}}>
       {locString ? locString : "Home page"}
     </button>
   );

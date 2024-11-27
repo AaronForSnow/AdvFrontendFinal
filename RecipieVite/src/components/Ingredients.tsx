@@ -1,26 +1,29 @@
-import { useIngredientContext } from "../context/useIngredientContextProvider"
+import { ToastContainer } from "react-toastify";
+import { useIngredientContext } from "../context/useIngredientContextProvider";
 import { Ingredient } from "../Data/Ingredient";
+import { GoTo } from "./NavBar";
 import { PlainSpinner } from "./PlainSpinner";
+import SingleIngredient from "./SingleIngredient";
 
+export function Ingredients() {
+  const { ingredients, isLoading } = useIngredientContext();
 
-export function Ingredients () {
-    const { ingredients,isLoading } = useIngredientContext();
-    return (
-        <>
-            {isLoading && <PlainSpinner />}
-            {!isLoading && 
-        <div>
-            {ingredients.map((i: Ingredient) => (
-                <li key={i.id.toString() + "parent"}>
-                    <ul>
-                        <li key={i.id.toString() + "child"}>{i.id}</li>
-                        <li key={i.name + "child"}>{i.name}</li>
-                        <li key={i.description + "child"}>{i.description}</li>
-                    </ul>
-                </li>
-            ))}
+  return (
+    <>
+      <div className="m-4">
+        <GoTo locString="addIngredient"></GoTo>
+      </div>
+      {isLoading && <PlainSpinner />}
+      {!isLoading && (
+        <div className="d-flex flex-wrap justify-content-center">
+          {ingredients.map((i: Ingredient) => (
+            <div key={i.id}>
+              <SingleIngredient Ingredient={i} />
             </div>
-        }
-        </>
-    )
+          ))}
+        </div>
+      )}
+      <ToastContainer />
+    </>
+  );
 }
