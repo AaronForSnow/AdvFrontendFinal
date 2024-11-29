@@ -23,10 +23,11 @@ export function LogIn() {
     return (
       <div>
         Hello {auth.user?.profile.sub}{" "}
-        <button onClick={() => void auth.removeUser()}>Log out</button>
+        <button onClick={() => void auth.removeUser()} className="btn btn-secondary text-light MyLink">Log out</button>
       </div>
     );
   }
-
-  return <button onClick={() => void auth.signinRedirect()} className="btn btn-primary">Log in</button>;
+  if (!auth.isAuthenticated){
+    return <button onClick={() => void auth.signinRedirect()} className="btn btn-secondary text-light MyLink">Log in</button>;
+  }
 }

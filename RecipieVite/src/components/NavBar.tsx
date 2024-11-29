@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import menuIcon from "/menu_burger.svg"
+import { LogIn } from "./Authentication/LogIn";
 
 export function NavBar() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ export function NavBar() {
           <a className="navbar-brand text-light" onClick={() => navigate("/")}>
             Aaron's Recipies
           </a>
+          <LogIn/>
 
           <button
             className="navbar-toggler bg-secondary hamburger"
@@ -37,6 +39,7 @@ export function NavBar() {
           </div>
         </div>
       </nav>
+      <div className="pt-5"></div>
       <div className="pt-3"></div>
       {/* padding to prevent hiding content of pages*/}
     </>

@@ -40,12 +40,12 @@ export const IngredientContextProvider: FC<{ children: ReactNode }> = ({
   const successToast = async (message: string) => {
     const delay = (ms: number) =>
       new Promise((resolve) => setTimeout(resolve, ms));
-    console.log("Waiting for delay...");
-    await delay(2000);
+    // console.log("Waiting for delay...");
+    await delay(1000);
     toast.success(message, {
       autoClose: 3000, 
     });
-    console.log("After delay...");
+    // console.log("After delay...");
   };
 
   return (
