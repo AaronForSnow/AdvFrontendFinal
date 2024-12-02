@@ -1,4 +1,5 @@
 import { useAuth } from "react-oidc-context";
+import { PlainSpinner } from "../PlainSpinner";
 
 
 export function LogIn() {
@@ -12,7 +13,7 @@ export function LogIn() {
   }
 
   if (auth.isLoading) {
-    return <div>Loading...</div>;
+    return <PlainSpinner/>;
   }
 
   if (auth.error) {
@@ -21,13 +22,12 @@ export function LogIn() {
 
   if (auth.isAuthenticated) {
     return (
-      <div>
-        Hello {auth.user?.profile.sub}{" "}
-        <button onClick={() => void auth.removeUser()} className="btn btn-secondary text-light MyLink">Log out</button>
-      </div>
+        <button onClick={() => void auth.removeUser()} className="btn btn-secondary text-light MyLink"> Log out</button>
     );
   }
   if (!auth.isAuthenticated){
-    return <button onClick={() => void auth.signinRedirect()} className="btn btn-secondary text-light MyLink">Log in</button>;
+    return (
+      <button onClick={() => void auth.signinRedirect()} className="btn btn-secondary text-light MyLink">Log in</button>
+    );
   }
 }

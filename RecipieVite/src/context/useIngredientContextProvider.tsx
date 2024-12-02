@@ -7,7 +7,7 @@ export interface IngredientContextInterface {
     addIngredient: (i: Ingredient) => void;
     isLoading: boolean;
     customer: Customer | undefined;
-    getCustomer: (email: string) => void;
+    // getCustomer: (email: string) => void;
     successToast: (message: string) => void;
 }
 
@@ -16,7 +16,7 @@ export const ingredientContext = createContext<IngredientContextInterface>({
     addIngredient: () => {},
     isLoading: false,
     customer: undefined,
-    getCustomer: () => {},
+    // getCustomer: () => {},
     successToast: () => {},
 });
 

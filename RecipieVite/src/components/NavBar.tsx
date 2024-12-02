@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import menuIcon from "/menu_burger.svg"
+import menuIcon from "/menu_burger.svg";
 import { LogIn } from "./Authentication/LogIn";
+import { useAuth } from "react-oidc-context";
 
 export function NavBar() {
+  const auth = useAuth();
   const navigate = useNavigate();
   return (
     <>
@@ -12,7 +14,7 @@ export function NavBar() {
           <a className="navbar-brand text-light" onClick={() => navigate("/")}>
             Aaron's Recipies
           </a>
-          <LogIn/>
+          <LogIn />
 
           <button
             className="navbar-toggler bg-secondary hamburger"
@@ -23,18 +25,23 @@ export function NavBar() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <img src={menuIcon}/>
+            <img src={menuIcon} />
           </button>
 
           {/* Navbar links */}
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav " >
+            <ul className="navbar-nav ">
               <li className="nav-item">
                 <GoTo locString="" />
               </li>
               <li className="nav-item">
                 <GoTo locString="Ingredients" />
               </li>
+              {auth.isAuthenticated &&
+                <li>
+                  <GoTo locString="Recipies" />
+                </li>
+              }
             </ul>
           </div>
         </div>
@@ -52,7 +59,11 @@ export const GoTo = ({ locString }: { locString: string }) => {
     navigate("/" + locString.replace(/ /g, ""));
   };
   return (
-    <button className="btn btn-secondary text-light MyLink" onClick={() => handleRedirect()} style={{minWidth: '100%'}}>
+    <button
+      className="btn btn-secondary text-light MyLink"
+      onClick={() => handleRedirect()}
+      style={{ minWidth: "100%" }}
+    >
       {locString ? locString : "Home page"}
     </button>
   );

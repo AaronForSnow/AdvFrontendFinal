@@ -26,5 +26,10 @@ export const APIService = {
         const response = await axios.get(apiUrl + "Customer/get/" + email || "john_doe@example.com");
         const customer: Customer = response.data;
         return customer;
+    },
+    postCustomer: async (newcustomer: Customer) => {
+        const response = await axios.post(apiUrl + "Customer/add", newcustomer);
+        const customer: Customer = response.data;
+        return customer;
     }
 }

@@ -12,7 +12,7 @@ const oidcConfig = {
   client_id: "aaron-final",
   redirect_uri: import.meta.env.VITE_REDIRECT_URL,
   onSigninCallback: (user: User | undefined)=> {
-    console.log(user)
+    // console.log(user)
     console.log(user?.profile.email)
     window.history.replaceState({}, document.title, window.location.pathname)
   },
