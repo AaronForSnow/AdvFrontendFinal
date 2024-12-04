@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { RecipieIngredient } from '../Data/RecipieIngredient';
 import { Recipie } from '../Data/Recipie';
 import { Ingredient } from '../Data/Ingredient';
+import { useAuth } from 'react-oidc-context';
 
 const AddRecipie: React.FC = () => {
+  const auth = useAuth();
     const [recipieName, setRecipieName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [instructions, setInstructions] = useState<string>('');
@@ -46,9 +48,10 @@ const AddRecipie: React.FC = () => {
     const addIngredientToList = () => {
       setRecipieIngredients([...recipieIngredients, { unit: '', quantity: 0, ingredient: ingredients[0] }]);
     };
-  
-    return (
-      <div className="container mt-4">
+    if (auth.isAuthenticated){
+
+      return (
+        <div className="container mt-4">
         <h2>Add a New Recipe</h2>
         <form onSubmit={handleSubmit} className="mt-3">
           <div className="mb-3">
@@ -75,7 +78,7 @@ const AddRecipie: React.FC = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
-            />
+              />
           </div>
   
           <div className="mb-3">
@@ -88,7 +91,7 @@ const AddRecipie: React.FC = () => {
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
               required
-            />
+              />
           </div>
   
           <div className="mb-3">
@@ -101,7 +104,7 @@ const AddRecipie: React.FC = () => {
                   onChange={(e) =>
                     handleIngredientChange(index, 'ingredient', ingredients.find((ingr) => ingr.id === +e.target.value) || ingredients[0])
                   }
-                >
+                  >
                   {ingredients.map((ingr) => (
                     <option key={ingr.id} value={ingr.id}>
                       {ingr.name}
@@ -123,7 +126,7 @@ const AddRecipie: React.FC = () => {
                   value={ingredient.unit}
                   onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}
                   required
-                />
+                  />
               </div>
             ))}
             <button type="button" className="btn btn-secondary" onClick={addIngredientToList}>
@@ -139,6 +142,12 @@ const AddRecipie: React.FC = () => {
         </form>
       </div>
     );
+  }
+  else {
+    return(
+      <h1 className='d-flex justify-content-center'>Please sign in to use this page</h1>
+    )
+  }
   };
   
   export default AddRecipie;
