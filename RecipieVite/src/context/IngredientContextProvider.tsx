@@ -5,6 +5,7 @@ import { APIService } from "../Services/APIService";
 import { Customer } from "../Data/Customer";
 import { toast, ToastContainer } from "react-toastify";
 import { useAuth } from "react-oidc-context";
+import { Recipie } from "../Data/Recipie";
 
 export const IngredientContextProvider: FC<{ children: ReactNode }> = ({
   children,
@@ -13,6 +14,7 @@ export const IngredientContextProvider: FC<{ children: ReactNode }> = ({
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [customer, setCustomer] = useState<Customer | undefined>(undefined);
+  const [recipies, setRecipies] = useState<Recipie[]>([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -21,6 +23,12 @@ export const IngredientContextProvider: FC<{ children: ReactNode }> = ({
         setIngredients(tempIngredients);
       }
     });
+    APIService.getRecipies().then((tempRecipies) => {
+      if (tempRecipies) {
+        setRecipies(tempRecipies);
+      }
+    });
+    
     setIsLoading(false);
   }, []);
 
@@ -31,7 +39,7 @@ export const IngredientContextProvider: FC<{ children: ReactNode }> = ({
         getOrMakeCustomer(email);
       }
     }
-  }, [auth.isAuthenticated]);
+  }, [auth.isAuthenticated, auth.user]);
 
   const getOrMakeCustomer = async (email: string) => {
     if (auth.isAuthenticated) {
@@ -64,15 +72,21 @@ export const IngredientContextProvider: FC<{ children: ReactNode }> = ({
       }
     });
   };
+  const addRecipie = async (r: Recipie) => {
+    console.log(r, "contex's attmpt to add recipie, or what it sent to API")
+    APIService.AddRecipie(r).then((tempRecipies) => {
+      if (tempRecipies) {
+        setRecipies(tempRecipies);
+      }
+    });
+  };
   const successToast = async (message: string) => {
     const delay = (ms: number) =>
       new Promise((resolve) => setTimeout(resolve, ms));
-    // console.log("Waiting for delay...");
     await delay(1000);
     toast.success(message, {
       autoClose: 3000,
     });
-    // console.log("After delay...");
   };
 
   return (
@@ -84,6 +98,8 @@ export const IngredientContextProvider: FC<{ children: ReactNode }> = ({
         customer: customer,
         // getCustomer: getOrMakeCustomer,
         successToast: successToast,
+        recipies: recipies,
+        addRecipie: addRecipie,
       }}
     >
       <>

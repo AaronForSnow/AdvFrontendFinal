@@ -2,13 +2,15 @@
 import { createContext, useContext } from "react";
 import { Ingredient } from "../Data/Ingredient";
 import { Customer } from "../Data/Customer";
+import { Recipie } from "../Data/Recipie";
 export interface IngredientContextInterface {
     ingredients: Ingredient [];
     addIngredient: (i: Ingredient) => void;
     isLoading: boolean;
     customer: Customer | undefined;
-    // getCustomer: (email: string) => void;
     successToast: (message: string) => void;
+    recipies: Recipie[];
+    addRecipie: (r: Recipie) => void;
 }
 
 export const ingredientContext = createContext<IngredientContextInterface>({
@@ -16,8 +18,9 @@ export const ingredientContext = createContext<IngredientContextInterface>({
     addIngredient: () => {},
     isLoading: false,
     customer: undefined,
-    // getCustomer: () => {},
     successToast: () => {},
+    recipies: [],
+    addRecipie: () => {},
 });
 
 export const useIngredientContext = () => {

@@ -5,6 +5,7 @@ import { HomePage } from "./Pages/HomePage";
 import { NoPage } from "./Pages/NoPagePage";
 import AddIngredient from "./components/AddIngredient";
 import { RecipiePage } from "./Pages/RecipiesPage";
+import AddRecipie from "./components/AddRecipie";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/ingredients" element={<IngredientPage />} />
           <Route path="/addIngredient" element={<AddIngredient/>}/>
           <Route path="/recipies" element={<RecipiePage/>}/>
+          <Route path="/addRecipie" element={<AddRecipie/>}/>
           <Route path="*" element={<NoPage />} />
           <Route path="/" element={<HomePage />} />
         </Routes>
