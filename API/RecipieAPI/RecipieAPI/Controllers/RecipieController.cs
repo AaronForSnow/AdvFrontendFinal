@@ -20,4 +20,10 @@ public class RecipieController : Controller
         var result = await _service.GetAllRecipiesAsync();
         return result;
     }
+    [HttpPost("add")]
+    public async Task<List<RecipieGiverDTO>> AddRecipie(RecipieGiverDTO recipie)
+    {
+        var result = await _service.AddRecipieAsync(recipie);
+        return result;
+    }
 }

@@ -1,18 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.EntityFrameworkCore;
 using RecipieAPI.Data;
 using RecipieAPI.Models;
 
 namespace RecipieAPI.Services;
 
-public class RecipieMakerDTO
-{
-    public string recipie_name { get; set; } = "";
-    public string description { get; set; } = "";
-    public string instructions { get; set; } = "";
-    public List<int> ingredient_ids { get; set; } = new List<int>();
-    public List<int> unit_ids { get; set; } = new List<int>();
-    public List<int> quantities { get; set; } = new List<int>();
-}
+//public class RecipieMakerDTO
+//{
+//    public string recipie_name { get; set; } = "";
+//    public string description { get; set; } = "";
+//    public string instructions { get; set; } = "";
+//    public List<int> ingredient_ids { get; set; } = new List<int>();
+//    public List<int> unit_ids { get; set; } = new List<int>();
+//    public List<int> quantities { get; set; } = new List<int>();
+//}
 public class RecipieGiverDTO
 {
     public int id { get; set; }
@@ -60,5 +61,50 @@ public class RecipieService
         }
 
         return recipies;
+    }
+    public async Task<List<RecipieGiverDTO>> AddRecipieAsync(RecipieGiverDTO recipie)
+    {
+        int addedrecID = await addPlainRecipieAsync(recipie);
+        await AddRecipieIngredientsAsync(recipie, addedrecID);
+
+        return await GetAllRecipiesAsync();
+    }
+
+    private async Task AddRecipieIngredientsAsync(RecipieGiverDTO recipie, int addedrecID)
+    {
+        foreach (Ingredient_Amount ingAmt in recipie.ingredients)
+        {
+            Unit? unit = await _context.Units.FirstAsync(u => u.Symbol == ingAmt.unit);
+            int unitID = unit.Id;
+            if (unit is null)
+            {
+                unitID = 1;
+            }
+
+            RecipeIngredient recIngredient = new RecipeIngredient()
+            {
+                IngredientId = ingAmt.ingredient.Id,
+                RecipeId = addedrecID,
+                Quantity = ingAmt.quantity,
+                UnitId = unitID
+            };
+
+            await _context.RecipeIngredients.AddAsync(recIngredient);
+        }
+        await _context.SaveChangesAsync();
+    }
+
+    private async Task<int> addPlainRecipieAsync(RecipieGiverDTO recipie)
+    {
+        Recipe newRecipie = new Recipe() { Name = recipie.recipie_name, Description = recipie.description, Instructions = recipie.instructions };
+        await _context.Recipes.AddAsync(newRecipie);
+        await _context.SaveChangesAsync();
+        Recipe? addedrec = await _context.Recipes.FirstOrDefaultAsync(r => r.Name == recipie.recipie_name && r.Description == recipie.description);
+        int addedrecID = addedrec?.Id ?? -1;
+        if (addedrecID == -1)
+        {
+            throw new Exception("Couldn't find a proper ID for The New Recipie when ading a new recipie");
+        }
+        return addedrecID;
     }
 }

@@ -1,5 +1,5 @@
-@RecipieAPI_HostAddress = http://localhost:5112
-# @RecipieAPI_HostAddress = http://aaron-recipie-api.duckdns.org
+# @RecipieAPI_HostAddress = http://localhost:5112
+@RecipieAPI_HostAddress = http://aaron-recipie-api.duckdns.org
 
 GET {{RecipieAPI_HostAddress}}/weatherforecast/
 Accept: application/json
@@ -76,7 +76,7 @@ Accept: application/json
 
 ### Needs to include: Recipie_ingredient, unit, ingredients
 GET {{RecipieAPI_HostAddress}}/Recipie/getall
-Accept: application/application/json
+Accept: application/json
 
 ### Needs Data Transfer Object
 POST {{RecipieAPI_HostAddress}}/Recipie/Add
