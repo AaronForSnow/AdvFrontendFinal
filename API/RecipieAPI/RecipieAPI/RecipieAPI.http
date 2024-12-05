@@ -1,5 +1,5 @@
-# @RecipieAPI_HostAddress = http://localhost:5112
-@RecipieAPI_HostAddress = http://aaron-recipie-api.duckdns.org
+@RecipieAPI_HostAddress = http://localhost:5112
+# @RecipieAPI_HostAddress = http://aaron-recipie-api.duckdns.org
 
 GET {{RecipieAPI_HostAddress}}/weatherforecast/
 Accept: application/json
@@ -84,13 +84,39 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "recipie_name" : "oatmeal",
-    "description" : "breakfast cereal",
-    "instructions" : "combine water and oats. \nHeat until done \nadd brown sugar to tase",
-    "ingredient_ids" : [9,10,11],
-    "unit_ids" : [3,2,2],
-    "quantities" : [2,1,2],
-}
+    "recipie_name": "OatMeal",
+    "description": "Hot Breakfast Cereal",
+    "instructions": "Add oats and water to pot. Boil until oats are soft and have absorbed the water, sugar to tast",
+    "ingredients": [
+      {
+        "ingredient": {
+        "id": 9,
+        "name": "Brown Sugar",
+        "description": "Granulated brown sugar"
+      },
+        "unit": "tbsp",
+        "quantity": 3.00
+      },
+      {
+        "ingredient": {
+          "id": 10,
+          "name": "Oats",
+          "description": "Rolled oats"
+        },
+        "unit": "cup",
+        "quantity": 1
+      },
+      {
+        "ingredient": {
+          "id": 11,
+          "name": "Water",
+          "description": "Tap water"
+        },
+        "unit": "cup",
+        "quantity": 2
+      }
+    ]
+  }
 ### Option: allow delete of Recipie, might not do... but would go here
 ### Should only need for make recipie/add ingredients page
 GET {{RecipieAPI_HostAddress}}/Unit/getall
