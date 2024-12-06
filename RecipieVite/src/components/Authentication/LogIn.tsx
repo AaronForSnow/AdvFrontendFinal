@@ -7,9 +7,9 @@ export function LogIn() {
 
   switch (auth.activeNavigator) {
     case "signinSilent":
-      return <div>Signing you in...</div>;
+      return <div className="text-light">Signing you in...</div>;
     case "signoutRedirect":
-      return <div>Signing you out...</div>;
+      return <div className="text-light">Signing you out...</div>;
   }
 
   if (auth.isLoading) {
