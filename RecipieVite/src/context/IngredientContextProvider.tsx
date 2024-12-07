@@ -73,7 +73,6 @@ export const IngredientContextProvider: FC<{ children: ReactNode }> = ({
     });
   };
   const addRecipie = async (r: Recipie) => {
-    console.log(r, "contex's attmpt to add recipie, or what it sent to API")
     APIService.AddRecipie(r).then((tempRecipies) => {
       if (tempRecipies) {
         setRecipies(tempRecipies);

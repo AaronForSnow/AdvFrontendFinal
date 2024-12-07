@@ -39,9 +39,7 @@ export const APIService = {
         return rs;
     },
     AddRecipie: async (newRecipie: Recipie) => {
-        console.log(newRecipie, "in API")
         const response = await axios.post(apiUrl + "Recipie/Add", newRecipie);
-        console.log(response, "responce")
         const rs: Recipie[] = response.data;
         return rs;
     }
