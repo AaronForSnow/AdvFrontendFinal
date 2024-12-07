@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 ENV VITE_API_URL=http://aaron-recipie-api.duckdns.org/
 ENV VITE_REDIRECT_URL=https://aaron-recipie-vite.duckdns.org/
-RUN npm run test
+RUN npm run test -- --run --silent
 RUN npm run build
 
 FROM nginx 
