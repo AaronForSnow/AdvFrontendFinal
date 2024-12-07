@@ -17,7 +17,7 @@ export function LogIn() {
   }
 
   if (auth.error) {
-    return <div>Oops... {auth.error.message}</div>;
+    return <div className="text-light">Oops... {auth.error.message}</div>;
   }
 
   if (auth.isAuthenticated) {

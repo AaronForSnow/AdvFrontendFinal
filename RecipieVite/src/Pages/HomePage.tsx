@@ -1,12 +1,29 @@
 import { useEffect, useState } from "react";
 import { useIngredientContext } from "../context/useIngredientContextProvider";
+import { useAuth } from "react-oidc-context";
 
 export function HomePage() {
   const { successToast } = useIngredientContext();
   const [locString, setLocString] = useState<string>("");
-  const saveToLocalStorage = (value: string) => {
-    localStorage.setItem("myData", value);
-    setLocString(value); // Update state
+  const auth = useAuth();
+  const saveToLocalStorage = () => {
+    if (auth.isAuthenticated) {
+      localStorage.setItem(
+        "myData",
+        "When you clicked the button you were signed in as: " +
+          auth.user?.profile.name
+      );
+      setLocString(
+        "When you clicked the button you were signed in as: " +
+          auth.user?.profile.name
+      );
+    } else {
+      localStorage.setItem(
+        "myData",
+        "Upon a button clicked... You were nobody... :("
+      );
+      setLocString("Upon a button clicked... You were nobody... :(");
+    }
   };
   useEffect(() => {
     const storedData = localStorage.getItem("myData");
@@ -23,10 +40,21 @@ export function HomePage() {
       </button>
 
       <p>Stored Data: {locString}</p>
-      <input></input>
-      <button onClick={() => saveToLocalStorage("Hello, Aaron this is you")}>
-        Save Data
+      <button onClick={() => saveToLocalStorage()}>
+        Button Click... please
       </button>
+      {auth.isAuthenticated &&
+        auth.user?.profile.email === "aaron.allen@students.snow.edu" && (
+          <div>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+              title="Rick Roll Video"
+              allow="autoplay"
+            ></iframe>
+          </div>
+        )}
     </>
   );
 }
