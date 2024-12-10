@@ -7,7 +7,7 @@ COPY ./package*.json /aaron-final/
 RUN npm install
 # Copying all the files in our project
 COPY . .
-ENV VITE_API_URL=http://aaron-recipie-api.duckdns.org/
+ENV VITE_API_URL=https://aaron-recipie-api.duckdns.org/
 ENV VITE_REDIRECT_URL=https://aaron-recipie-vite.duckdns.org/
 RUN npm run test -- --run --silent
 RUN npm run build
